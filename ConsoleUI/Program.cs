@@ -1,6 +1,7 @@
 ﻿using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
+using Entities.Concrete;
 using System;
 
 namespace ConsoleUI
@@ -13,9 +14,12 @@ namespace ConsoleUI
         static void Main(string[] args)
         {
             //ProductTest();
-            
+
             //CategoryTest();
 
+            ProductManager productManager = new ProductManager(new EfProductDal());
+
+            productManager.Update(new Product { ProductId = 18, ProductName = "Test" });
         }
 
         private static void CategoryTest()
