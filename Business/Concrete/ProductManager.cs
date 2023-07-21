@@ -35,7 +35,7 @@ namespace Business.Concrete
             _categoryService = categoryService;
         }
 
-        [SecuredOperation("product.add,admin")]
+        //  [SecuredOperation("product.add,admin")]
         [ValidationAspect(typeof(ProductValidator))]
         [CacheRemoveAspect("IProductService.Get")]
         public IResult Add(Product product)
@@ -59,10 +59,7 @@ namespace Business.Concrete
         {
             //iş kodları
             //Şartlar eğer geçerliyse
-            if (DateTime.Now.Hour == 20)
-            {
-                return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime); //Maintenance = Bakım demek.
-            }
+            
 
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(), Messages.ProductsListed);
 
